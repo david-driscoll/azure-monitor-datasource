@@ -9,12 +9,15 @@ System.register([], function(exports_1) {
                     this.rawQueryString = rawQueryString;
                     this.options = options;
                 }
-                AppInsightsRawQuerystringBuilder.prototype.generate = function () {
+                AppInsightsRawQuerystringBuilder.prototype.generate = function (templateSrv) {
                     var queryString = this.rawQueryString;
                     queryString = queryString.replace(/\$__interval/gi, this.options.interval);
                     queryString = queryString.replace(/\$timeFilter/gi, this.getTimeFilter(this.options));
                     queryString = queryString.replace(/\$from/gi, this.getFrom(this.options));
                     queryString = queryString.replace(/\$until/gi, this.getUntil(this.options));
+                    if (templateSrv) {
+                        queryString = templateSrv.replace(queryString);
+                    }
                     queryString = encodeURIComponent(queryString);
                     var uriString = "query=" + queryString;
                     return uriString;

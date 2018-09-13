@@ -30,7 +30,7 @@ export default class AppInsightsDatasource {
       const item = target.appInsights;
       if (item.rawQuery) {
         const querystringBuilder = new AppInsightsRawQuerystringBuilder(item.rawQueryString, options);
-        const url = `${this.baseUrl}/query?${querystringBuilder.generate()}`;
+        const url = `${this.baseUrl}/query?${querystringBuilder.generate(this.templateSrv)}`;
 
         return {
           refId: target.refId,

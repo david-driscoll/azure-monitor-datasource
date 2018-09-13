@@ -3,7 +3,7 @@ export default class AppInsightsRawQuerystringBuilder {
     rawQueryString: any;
     options: any;
     constructor(rawQueryString: any, options: any);
-    generate(): string;
+    generate(templateSrv?: any): string;
     getFrom(options: any): string;
     getUntil(options: any): string;
     getTimeFilter(options: any): string;

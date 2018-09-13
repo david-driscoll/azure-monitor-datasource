@@ -7,12 +7,15 @@ import TimeGrainConverter from '../time_grain_converter';
 export default class AppInsightsRawQuerystringBuilder {
   constructor(public rawQueryString, public options) {}
 
-  generate() {
+  generate(templateSrv?) {
     var queryString = this.rawQueryString;
     queryString = queryString.replace(/\$__interval/gi, this.options.interval);
     queryString = queryString.replace(/\$timeFilter/gi, this.getTimeFilter(this.options));
     queryString = queryString.replace(/\$from/gi, this.getFrom(this.options));
     queryString = queryString.replace(/\$until/gi, this.getUntil(this.options));
+    if (templateSrv) {
+      queryString = templateSrv.replace(queryString);
+    }
     queryString = encodeURIComponent(queryString);
     let uriString = `query=${queryString}`;
 

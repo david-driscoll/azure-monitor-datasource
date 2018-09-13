@@ -39,7 +39,7 @@ System.register(['lodash', './app_insights_querystring_builder', './app_insights
                         var item = target.appInsights;
                         if (item.rawQuery) {
                             var querystringBuilder = new app_insights_rawquerystring_builder_1.default(item.rawQueryString, options);
-                            var url = _this.baseUrl + "/query?" + querystringBuilder.generate();
+                            var url = _this.baseUrl + "/query?" + querystringBuilder.generate(_this.templateSrv);
                             return {
                                 refId: target.refId,
                                 intervalMs: options.intervalMs,
